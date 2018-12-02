@@ -1,3 +1,6 @@
+import java.util.Calendar;
+import java.time.*;
+
 public class Task{
 	String name; // name of task
 	//String subject; // subject of task (can use this to classiy tasks/group them together)
@@ -8,6 +11,7 @@ public class Task{
 	/* MORE VARIABLES */
 	// due date!! figure out java.time
 		// https://docs.oracle.com/javase/9/docs/api/java/time/LocalDateTime.html
+	LocalDate dueDate;
 
 	// time needed to complete
 	// length of this session
@@ -17,11 +21,12 @@ public class Task{
 
 	}
 
-	public Task(String name, int rating){
+	public Task(String name, int rating, LocalDate dueDate){
 		this.name = name;
 		//this.subject = subject;
 		//this.desc = description;
 		this.rating = rating;
+		this.dueDate = dueDate;
 	}
 
 
