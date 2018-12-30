@@ -30,34 +30,59 @@ public class PomodoroPal{
 			// name
 			System.out.println("Task " + (i + 1) + " name: ");
 			name = sc.nextLine();
-			
+		
 			// due date
 			System.out.println("Due date (Format: mm/dd/yyy): ");
-			data = sc.nextLine();
+			
 			// parse into LocalDate object
-			while(dueDate == null){
+			while(dueDate == null || dueDate.compareTo(LocalDate.now()) < 0){
 				try{
+					data = sc.nextLine();
 					dueDate = LocalDate.parse(data, df);
+					if(dueDate.compareTo(LocalDate.now()) < 0){
+						System.out.println("Due date cannot be before today. Try again: ");	
+					}
 				}catch(Exception e){
 					System.out.println("Invalid format. Try again: ");
-					data = sc.nextLine();
-				}
+          		}
 			}
 
 			// rating
 			System.out.println("Difficulty rating (on a scale of 1 - 6): ");
-			rating = sc.nextInt(); 
+			rating = sc.nextInt();
+			while(rating < 1 || rating > 6){
+				System.out.println("Invalid rating. Try again: ");
+				rating = sc.nextInt();
+			}
 			
 			sc.nextLine();
-			tasks.add(new Task(name, rating, dueDate));
+			Task newTask = new Task(name, rating, dueDate);
+			System.out.println("NEW TASK: "+newTask.name + " | Rating: " + newTask.rating + " | Due " + newTask.dueDate.format(df));
+			tasks.add(newTask);
 			System.out.println();
 		}
 
-		System.out.println("Awesome! Here are your tasks: ");
+		// sort task list
+
+		// by rating
+ 
+		// by due date 
+
+		System.out.println();
+		System.out.println("-------------------------------");
+		System.out.println("Awesome! Here are all of your tasks: ");
 		for(int i = 0; i < tasks.size(); i++){
 			System.out.println("\t- "+tasks.get(i).name + " | Rating: " + tasks.get(i).rating + " | Due " + tasks.get(i).dueDate.format(df));
 		}
-		
+/*
+	public static void sortByRating(){
+			
+	}		
 
+	public static void sortByDueDate(){
+	}
+*/
+	public void sortByRating(Task tasks, SortByNums){
+		return SortByNums.
 	}
 }
